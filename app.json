@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "GraphQL NYC",
+    "icon": "./assets/graphql-logo.png",
+    "version": "1.0.1",
+    "slug": "graphql-nyc",
+    "sdkVersion": "19.0.0",
+    "orientation": "portrait",
+    "scheme": "graphqlnyc",
+    "ios": {
+      "bundleIdentifier": "com.kurtiskemple.graphqlnyc",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.kurtiskemple.grpahqlnyc",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDqIfZoFsaY0fM9xVCrDjBdE4GJbiVDC4E"
+        }
+      }
+    }
+  }
+}
