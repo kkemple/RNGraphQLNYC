@@ -71,7 +71,7 @@ const Tabs = TabNavigator(tabs, {
     style: {
       backgroundColor: colors.white,
       borderTopColor: colors.border,
-      paddingBottom: 4,
+      paddingBottom: 2,
       paddingTop: 2,
       marginBottom: 0,
     },
