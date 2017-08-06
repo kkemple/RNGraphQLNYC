@@ -14,6 +14,7 @@ import {
 import { ImagePicker, takeSnapshotAsync } from 'expo';
 
 import graphqlLogo from '../assets/graphql-logo.png';
+import photoCamera from '../assets/photo-camera.png';
 import { colors } from '../styles';
 
 type NavigationOptions = {
@@ -22,6 +23,8 @@ type NavigationOptions = {
 };
 
 export default class Camera extends Component {
+  imageContainer: View;
+
   static navigationOptions: NavigationOptions = {
     tabBarLabel: 'Camera',
     tabBarIcon: ({ tintColor }) =>
@@ -35,7 +38,7 @@ export default class Camera extends Component {
     photo: null,
   };
 
-  takeSelfie = async () => {
+  takePhoto = async () => {
     try {
       const { uri: photo, cancelled } = await ImagePicker.launchCameraAsync();
 
@@ -47,14 +50,15 @@ export default class Camera extends Component {
     }
   };
 
-  saveSelfie = async () => {
+  savePhoto = async () => {
     try {
       let result = await takeSnapshotAsync(this.imageContainer, {
         format: 'png',
         result: 'file',
       });
 
-      let saveResult = await CameraRoll.saveToCameraRoll(result, 'photo');
+      await CameraRoll.saveToCameraRoll(result, 'photo');
+
       Alert.alert('Photo Saved!', 'Your photo was saved to your device!');
       this.setState(() => ({ photo: undefined }));
     } catch (error) {
@@ -92,11 +96,11 @@ export default class Camera extends Component {
               <Text style={styles.graphqlText}>GraphQL NYC</Text>
             </View>
           : <TouchableOpacity
-              onPress={this.takeSelfie}
+              onPress={this.takePhoto}
               style={styles.cameraButton}
             >
               <Image
-                source={require('../assets/photo-camera.png')}
+                source={photoCamera}
                 accessibilityLabel="Take a selfie!"
                 style={styles.cameraButtonIcon}
               />
@@ -111,7 +115,7 @@ export default class Camera extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.saveButton}
-              onPress={this.saveSelfie}
+              onPress={this.savePhoto}
             >
               <Text style={styles.saveText}>Save</Text>
             </TouchableOpacity>
@@ -168,10 +172,10 @@ const styles = StyleSheet.create({
   },
   graphqlText: {
     fontFamily: 'dinMedium',
-    fontSize: 32,
+    fontSize: 24,
     color: colors.white,
     position: 'absolute',
-    bottom: 16,
+    bottom: 22,
     left: 64,
     backgroundColor: 'transparent',
   },
