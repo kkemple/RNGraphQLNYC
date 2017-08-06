@@ -58,6 +58,7 @@ export default class Camera extends Component {
       });
 
       await CameraRoll.saveToCameraRoll(result, 'photo');
+
       Alert.alert('Photo Saved!', 'Your photo was saved to your device!');
       this.setState(() => ({ photo: undefined }));
     } catch (error) {
